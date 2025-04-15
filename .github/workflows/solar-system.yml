@@ -4,9 +4,13 @@ on:
   workflow_dispatch:
   push:
     branches:
-      - main
+      - master
       - 'feature/*'
-    
+
+env:
+    MONGO_URI: 'mongodb+srv://supercluster.d83jj.mogodb.net/superData'
+    MONGO_USERNAME: ${{ vars.MONGO_USERNAME }}  
+    MONGO_PASSWORD: ${{ secrets.MONGO_PASSWORD }}
 jobs:
     unit-testing:
         name: Unit Testing
