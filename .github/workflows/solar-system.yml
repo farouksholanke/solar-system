@@ -31,6 +31,13 @@ jobs:
           uses: actions/setup-node@v3
           with:
             node-version: ${{ matrix.nodejs_version}}
+
+        - name: Cache NPM dependencies
+          uses: actions/cache@v4
+          with:
+            path: node_modules
+            #using hashfiles here to invalidate the cache; whenever the file changes, the hash will change and it will skip the cache
+            key: ${{ runner.os }}-node-modules-${{ hashFiles('package-lock.json') }}
     
         - name: Install Dependencies
           run: npm install
