@@ -36,9 +36,12 @@ jobs:
           run: npm install
     
         - name: Unit Testing
+          id: nodejs-unit-testing-step
           run: npm test
           
         - name: Archive Test Result
+          # this step will always run regardless of the outcome of the previous steps
+          if: always()  
           uses: actions/upload-artifact@v4
           with:
             name: Mocha1-Test-Result-${{ matrix.nodejs_version }}-${{ matrix.operating_system }}
