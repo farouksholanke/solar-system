@@ -36,6 +36,7 @@ jobs:
           uses: actions/cache@v4
           with:
             path: node_modules
+            #test cache
             #using hashfiles here to invalidate the cache; whenever the file changes, the hash will change and it will skip the cache
             key: ${{ runner.os }}-node-modules-${{ hashFiles('package-lock.json') }}
     
